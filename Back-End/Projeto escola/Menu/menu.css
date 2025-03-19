@@ -1,0 +1,77 @@
+#box {
+    background-color: rgb(200, 200, 200);
+    border-radius: 10px;
+    height: 100vh;
+    width: 200vh;
+}
+
+a {
+    border-radius: 10px;
+    background-color: green;
+    padding:  5px;
+    text-decoration: none;
+    color: white;
+    font-family: "Roboto";
+}
+
+.title {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.title2 {
+    background-color: black;
+    color: rgb(250, 82, 21);
+    border-radius: 10px;
+    padding: 5px;
+    font-family: "Roboto";
+}
+
+.aluno {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background-color: rgb(100, 100, 100);
+}
+
+.aluno2 {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 10px;
+}
+
+.curso {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background-color: rgb(100, 100, 100);
+}
+
+.curso2 {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 10px;
+
+}
+
+.professor {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background-color: rgb(100, 100, 100);
+}
+
+.professor2 {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 10px;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url(Roboto-Thin.ttf);
+}

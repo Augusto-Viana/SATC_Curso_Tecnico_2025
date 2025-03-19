@@ -1,0 +1,52 @@
+#box {
+    flex-direction: column;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(241, 241, 241);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 15px;
+    font-family: "Roboto";
+    font-size: large;
+    font-weight: bolder;
+    background-color: rgb(173, 173, 173)
+}
+
+.img {
+    padding: 10px;
+}
+
+.img img{
+    height: 158px;
+    width: 373px;
+}
+
+.login {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 15px;
+    font-family: "Roboto";
+    font-size: large;
+    font-weight: bolder;
+    margin-top: 20px;
+    background-color: rgb(173, 173, 173)    
+} 
+
+@font-face {
+    font-family: "Roboto";
+    src: url(Roboto-Thin.ttf);
+}

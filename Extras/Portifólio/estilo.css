@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif; 
+    background-color: #FFFFFF;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #000;
+}
+
+.bio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.foto img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.descricao {
+    max-width: 600px;
+}
+
+.descricao h2 {
+    font-size: 2em;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.descricao p {
+    padding: 5px;
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #000000;
+    background-color: #BBBBBB;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.descricao h3 {
+    color: #000;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+.fundo {
+    font-family: Roboto;
+    background-color: #00BFFF;
+    border-radius: 20px
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url(Roboto-Thin.ttf);
+}

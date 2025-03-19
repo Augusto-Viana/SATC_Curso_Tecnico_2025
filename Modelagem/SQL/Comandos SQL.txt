@@ -1,0 +1,36 @@
+create database amogus;
+
+create table curso(
+codigo int(5) not null,
+nome varchar(50) not null,
+telefone int(15) not null,
+primary key(codigo));
+
+create table aluno(
+codigo int(5) not null,
+nome varchar(50) not null,
+telefone int(15) not null,
+cidade varchar(50) not null,
+codcurso int(5) not null,
+primary key(codigo),
+foreign key(codcurso) references curso(codigo));
+
+* alter table(modifica a tabela)
+* drop table (excluir a tabela)
+
+---------------------------------------
+
+DML(manipulação de tabelas)
+INSERT 
+UPDATE
+DELETE
+SELECT
+
+insert curso(código, nome, telefone) values(1, "informática", 123);
+
+update curso set telefone = 345 where código = 1;
+
+delete * from aluno;
+
+select * from aluno;
+

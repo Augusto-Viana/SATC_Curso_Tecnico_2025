@@ -1,0 +1,29 @@
+Primeiro passo: Editar variáveis de ambiente da conta. Na pasta PATH clica em editar-> Novo
+
+C:\Users\aluno.codigo\AppData\Roaming\npm
+
+Segundo passo: Abra o cmd para baixar o expo. Escreva no cmd o código abaixo:
+
+npx install expo-cli
+
+Terceiro passo: Abra o cmd e entre na pasta criada  para ter todos os projetos mobile nela. Digite no CMD o caminho desta pasta. 
+Exemplo:
+cd C: \Users\aluno.codigo\projetos
+
+Quarto passo: Criar seu projeto expo, dentro do cmd já na pasta, digite o código abaixo:
+
+npx create-expo-app@ --template blank nome-do-projeto 
+
+Quinto passo: Entre no seu projeto. Digite cd nome-do-projeto
+
+Sexto passo: Iniciar projeto. 
+
+npx expo start
+
+Sétimo passo: Se tudo deu certo, apareceu o código QR code, porém vamos iniciar pela web, então, precisamos baixar as bibliotecas para a web.
+
+Oitavo passo: Ctrl + c (PARA O PROJETO)
+
+npx install react-dom react-native-web @expo/metro-runtime
+
+Nono passo: Inicie o projeto novamente seguindo o sexto passo. Depois, aperte a tecla "w" para iniciar o projeto na web.
