@@ -3,50 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="produto.css">
+    <link rel="stylesheet" href="../styles/style.css">
     <title>Cadastro de Produto</title> 
 </head>
 
 <body>
 
-<h1>CADASTRO DE PRODUTO:</h1>
-<br>
-<form name="formulario" method="post" action="produto.php" enctype="multipart/form-data">
-    <label>Código:</label> 
-    <input type="text" name="codigo" id="codigo" size="30">
-    <br><br>
-    <label>Descrição:</label>
-    <input type="text" name="descricao" id="descricao" size="30">
-    <br><br>
-    <label>Cor:</label>
-    <input type="text" name="cor" id="cor" size="30">
-    <br><br>
-    :<label>Tamanho</label>
-    <input type="text" name="tamanho" id="tamanho" size="30">
-    <br><br>
-    <label>Preço:</label>
-    <input type="text" name="preco" id="preco" size="30">
-    <br><br>
-    <label>Codmarca:</label>
-    <input type="text" name="codmarca" id="codmarca" size="5">
-    <br><br>
-    <label>Codcategoria:</label> 
-    <input type="text" name="codcategoria" id="codcategoria" size="5">
-    <br><br>
-    <label>Codtipo:</label>
-    <input type="text" name="codtipo" id="codtipo" size="5">
-    <br><br>
-    <label>Foto1:</label>
-    <input type="file" name="foto1" id="foto1" size="">
-    <br><br>
-    <label>Foto2:</label> 
-    <input type="file" name="foto2" id="foto2" size="">
-    <br><br>
-    <input type="submit" name="gravar" value="gravar">
-    <input type="submit" name="alterar" value="alterar">
-    <input type="submit" name="excluir" value="excluir">
-    <input type="submit" name="pesquisar" value="pesquisar">
-</form>
-
+    <div class="container">
+        <div class="title">
+            <h1>CADASTRO DE PRODUTO</h1>
+        </div>
+        <br>
+        <div class="form">
+        <form name="formulario" method="post" action="produto.php" enctype="multipart/form-data">
+            <label>Código:</label> 
+            <input type="text" name="codigo" id="codigo" size="34">
+            <br><br>
+            <label>Descrição:</label>
+            <input type="text" name="descricao" id="descricao" size="30">
+            <br><br>
+            <label>Cor:</label>
+            <input type="text" name="cor" id="cor" size="37">
+            <br><br>
+            <label>Tamanho:</label>
+            <input type="text" name="tamanho" id="tamanho" size="31">
+            <br><br>
+            <label>Preço:</label>
+            <input type="text" name="preco" id="preco" size="34">
+            <br><br>
+            <label>Codmarca:</label>
+            <input type="text" name="codmarca" id="codmarca" size="30">
+            <br><br>
+            <label>Codcategoria:</label> 
+            <input type="text" name="codcategoria" id="codcategoria" size="26">
+            <br><br>
+            <label>Codtipo:</label>
+            <input type="text" name="codtipo" id="codtipo" size="33">
+            <br><br>
+            <label>Foto1:</label>
+            <input type="file" name="foto1" id="foto1" size="">
+            <br><br>
+            <label>Foto2:</label> 
+            <input type="file" name="foto2" id="foto2" size="">
+            <br><br>
+            <div class="buttons">
+                <input type="submit" name="gravar" value="gravar" class="bt1">
+                <input type="submit" name="alterar" value="alterar" class="bt2">
+                <input type="submit" name="excluir" value="excluir" class="bt3">
+                <input type="submit" name="pesquisar" value="pesquisar" class="bt4">
+            </div>
+        </form>
+        </div>
+    </div>
 </body>
 </html>

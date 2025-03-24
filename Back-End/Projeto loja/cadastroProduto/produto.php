@@ -1,153 +1,97 @@
 <?php
 
-$conectar = mysql_connect('localhost','root','');
-$banco    = mysql_select_db("loja");
-
-if (isset($_POST['gravar']))
-{
-    $codigo            = $_POST['codigo'];
-    $descricao         = $_POST['descricao'];
-    $cor               = $_POST['cor'];
-    $tamanho           = $_POST['tamanho'];
-    $preco             = $_POST['preco'];
-    $codmarca          = $_POST['codmarca'];
-    $codcategoria      = $_POST['codcategoria'];
-    $codtipo           = $_POST['codtipo'];
-
-    $foto1             = $_FILES['foto1'];
-    $foto2             = $_FILES['foto2'];
-
-
-    $diretorio = "fotos/";
-
-    $extensao1 = strtolower(substr($_FILES['foto1']['name'], -4));
-    $novo_nome1 = md5(time().$extensao1);
-    move_uploaded_file($_FILES['foto1']['tmp_name'], $diretorio.$novo_nome1);
-
-
-    $extensao2 = strtolower(substr($_FILES['foto2']['name'], -6));
-    $novo_nome2 = md5(time().$extensao2);
-    move_uploaded_file($_FILES['foto2']['tmp_name'], $diretorio.$novo_nome2);
-
-   $sql = mysql_query("INSERT INTO produto (codigo,descricao,cor,tamanho,preco,codmarca,codcategoria,codtipo,foto1,foto2)
-                values ('$codigo','$descricao','$cor','$tamanho','$preco','$codmarca','$codcategoria','$codtipo','$novo_nome1','$novo_nome2')");
-
-   $resultado = mysql_query($sql);
-
-   if ($resultado)
-        {echo " Falha ao gravar os dados informados";}
-   else
-        {echo " Dados informados cadastrados com sucesso";}
+//Conexão com o banco de dados:
+$conectar = mysqli_connect('localhost', 'root', '', 'loja');
+if (!$conectar) {
+   die('Conexão falhou: ' . mysqli_connect_error());
 }
 
-if (isset($_POST['excluir']))
-{
-    $codigo            = $_POST['codigo'];
-    $descricao         = $_POST['descricao'];
-    $cor               = $_POST['cor'];
-    $tamanho           = $_POST['tamanho'];
-    $preco             = $_POST['preco'];
-    $codmarca          = $_POST['codmarca'];
-    $codcategoria      = $_POST['codcategoria'];
-    $codtipo           = $_POST['codtipo'];
-    $foto1             = $_POST['foto1'];
-    $foto2             = $_POST['foto2'];
+if (isset($_POST['gravar'])) {
+   $codigo = mysqli_real_escape_string($conectar, $_POST['codigo']);
+   $descricao = mysqli_real_escape_string($conectar, $_POST['descricao']);
+   $cor = mysqli_real_escape_string($conectar, $_POST['cor']);
+   $tamanho = mysqli_real_escape_string($conectar, $_POST['tamanho']);
+   $preco = mysqli_real_escape_string($conectar, $_POST['preco']);
+   $codmarca = mysqli_real_escape_string($conectar, $_POST['codmarca']);
+   $codcategoria = mysqli_real_escape_string($conectar, $_POST['codcategoria']);
+   $codtipo = mysqli_real_escape_string($conectar, $_POST['codtipo']);
 
-  $sql = "DELETE FROM produto WHERE codigo = '$codigo'";
+   //Diretório para salvar as imagens:
+   $diretorio = "../images/products_images/";
 
-  $resultado = mysql_query($sql);
+   //Verificação da extensão dos arquivos de imagem:
+   $extensao1 = strtolower(pathinfo($_FILES['foto1']['name'], PATHINFO_EXTENSION));
+   $extensao2 = strtolower(pathinfo($_FILES['foto2']['name'], PATHINFO_EXTENSION));
 
-  if ($resultado === TRUE)
-  {
-     echo 'Exclusao realizada com Sucesso';
-  }
-  else
-  {
-     echo 'Erro ao excluir dados.';
-  }
+   $tipos_permitidos = array('jpg', 'jpeg', 'png', 'gif');
+
+   if (in_array($extensao1, $tipos_permitidos) && in_array($extensao2, $tipos_permitidos)) {
+      //Geração dos nomes únicos para as imagens:
+      $novo_nome1 = md5(time() . $_FILES['foto1']['name']) . '.' . $extensao1;
+      $novo_nome2 = md5(time() . $_FILES['foto2']['name']) . '.' . $extensao2;
+
+      //Movendo as imagens para o diretório:
+      move_uploaded_file($_FILES['foto1']['tmp_name'], $diretorio . $novo_nome1);
+      move_uploaded_file($_FILES['foto2']['tmp_name'], $diretorio . $novo_nome2);
+
+      //Inserir no banco de dados:
+      $sql = "INSERT INTO produto (codigo, descricao, cor, tamanho, preco, codmarca, codcategoria, codtipo, foto1, foto2)
+                VALUES ('$codigo', '$descricao', '$cor', '$tamanho', '$preco', '$codmarca', '$codcategoria', '$codtipo', '$novo_nome1', '$novo_nome2')";
+
+      if (mysqli_query($conectar, $sql)) {
+         echo "Dados cadastrados com sucesso!";
+      } else {
+         echo "Erro: " . mysqli_error($conectar);
+      }
+   } else {
+      echo "Por favor, envie imagens com extensões válidas (JPG, JPEG, PNG, GIF).";
+   }
 }
 
-if (isset($_POST['alterar']))
-{
-    $codigo            = $_POST['codigo'];
-    $descricao         = $_POST['descricao'];
-    $cor               = $_POST['cor'];
-    $tamanho           = $_POST['tamanho'];
-    $preco             = $_POST['preco'];
-    $codmarca          = $_POST['codmarca'];
-    $codcategoria      = $_POST['codcategoria'];
-    $codtipo           = $_POST['codtipo'];
-    $foto1             = $_POST['foto1'];
-    $foto2             = $_POST['foto2'];
+if (isset($_POST['excluir'])) {
+   $codigo = mysqli_real_escape_string($conectar, $_POST['codigo']);
 
-  $sql = "UPDATE produto SET descricao='$descricao',preco='$preco'
-          WHERE codigo = '$codigo'";
-  $resultado = mysql_query($sql);
+   $sql = "DELETE FROM produto WHERE codigo = '$codigo'";
 
-  if ($resultado === TRUE)
-  {
-     echo 'Dados alterados com Sucesso';
-  }
-  else
-  {
-     echo 'Erro ao alterar dados.';
-  }
+   if (mysqli_query($conectar, $sql)) {
+      echo 'Dados excluídos com sucesso!';
+   } else {
+      echo 'Erro ao excluir dados: ' . mysqli_error($conectar);
+   }
 }
 
-if (isset($_POST['pesquisar']))
-{
-   $sql = mysql_query("SELECT codigo,descricao,cor,tamanho,preco,codmarca,codcategoria,codtipo,foto1,foto2 FROM produto");
+if (isset($_POST['alterar'])) {
+   $codigo = mysqli_real_escape_string($conectar, $_POST['codigo']);
+   $descricao = mysqli_real_escape_string($conectar, $_POST['descricao']);
+   $preco = mysqli_real_escape_string($conectar, $_POST['preco']);
 
-   if (mysql_num_rows($sql) == 0)
-         {echo "Desculpe, mas sua pesquisa nao retornou resultados.";}
-   else
-        {
-        echo "<b>Produtos Cadastrados:</b><br><br>";
-        while ($resultado = mysql_fetch_array($sql))
- 	        {
-                echo "Codigo         : ".$dados->codigo." ";
-                echo "Descricao      : ".$dados->descricao."<br>";
-                echo "Cor            : ".$dados->cor."<br>";
-                echo "Tamanho        : ".$dados->tamanho." ";
-                echo "Preco          : ".$dados->preco."<br>";
-                echo "Marca          : ".$dados->codmarca."";
-                echo "Categoria      : ".$dados->codcategoria." ";
-                echo "Tipo           : ".$dados->codtipo." ";
-                echo '<img src="fotos/'.$dados->foto1.'"height="200" width="200" />'."  ";
-                echo '<img src="fotos/'.$dados->foto2.'"height="200" width="200" />'."<br><br>  ";
-            }
-        }
+   $sql = "UPDATE produto SET descricao='$descricao', preco='$preco' WHERE codigo = '$codigo'";
+
+   if (mysqli_query($conectar, $sql)) {
+      echo 'Dados alterados com sucesso.';
+   } else {
+      echo 'Erro ao alterar dados: ' . mysqli_error($conectar);
+   }
 }
 
-//------- alterar  ??
+if (isset($_POST['pesquisar'])) {
+   $sql = mysqli_query($conectar, "SELECT codigo, descricao, cor, tamanho, preco, codmarca, codcategoria, codtipo, foto1, foto2 FROM produto");
 
-// ------- excluir  ??
-
-
-
-if (isset($_POST['pesquisar']))
-{
-   $sql = mysql_query("SELECT codigo,descricao,cor,tamanho,preco,codmarca,codcategoria,codtipo,foto1,foto2 FROM produto");
-   
-   if (mysql_num_rows($sql) == 0)
-         {echo "Desculpe, mas sua pesquisa nao encontrou resultados.";}
-   else
-        {
-        echo "<b>Produtos Cadastrados:</b><br><br>";
-        while ($dados = mysql_fetch_object($sql))
-     	{
-               echo "Codigo    : ".$dados->codigo."  ";
-               echo "Desricao  : ".$dados->descricao." ";
-               echo "Cor       : ".$dados->cor." ";
-               echo "Tamanho   : ".$dados->tamanho." ";
-               echo "Preco     : ".$dados->preco."<br>";
-               echo "Marca     : ".$dados->codmarca."";
-               echo "Categoria : ".$dados->codcategoria." ";
-               echo "Tipo      : ".$dados->codtipo."<br>";
-               echo '<img src="fotos/'.$dados->foto1.'"height="200" width="200" />'."  ";
-               echo '<img src="fotos/'.$dados->foto2.'"height="200" width="200" />'."<br><br>  ";
-	    }
-     }
+   if (mysqli_num_rows($sql) == 0) {
+      echo "Desculpe, mas sua pesquisa não retornou resultados.";
+   } else {
+      echo "<b>Produtos Cadastrados:</b><br><br>";
+      while ($dados = mysqli_fetch_object($sql)) {
+         echo "Codigo    : " . $dados->codigo . "  ";
+         echo "Descricao : " . $dados->descricao . " ";
+         echo "Cor       : " . $dados->cor . " ";
+         echo "Tamanho   : " . $dados->tamanho . " ";
+         echo "Preco     : " . $dados->preco . "<br>";
+         echo "Marca     : " . $dados->codmarca . " ";
+         echo "Categoria : " . $dados->codcategoria . " ";
+         echo "Tipo      : " . $dados->codtipo . "<br>";
+         echo '<img src="../images/products_images/' . $dados->foto1 . '" height="200" width="200" />' . "  ";
+         echo '<img src="../images/products_images/' . $dados->foto2 . '" height="200" width="200" />' . "<br><br>  ";
+      }
+   }
 }
-
-?>

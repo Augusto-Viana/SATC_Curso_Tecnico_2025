@@ -35,6 +35,11 @@ body {
     border-color: white;
 }
 
+input {
+    border-radius: 7px;
+    border-color: white;
+}
+
 .buttons {
     display: flex;
     justify-content: space-evenly;
