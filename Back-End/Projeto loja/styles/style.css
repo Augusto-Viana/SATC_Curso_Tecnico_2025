@@ -1,3 +1,15 @@
+/* --------------------------------------------------Todos-------------------------------------------------------- */
+
+.extra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --------------------------------------------------------------------------------------------------------------- */
+
+/* --------------------------------------------------Cadastros---------------------------------------------------- */
+
 body {
     background-color: rgb(255, 255, 255);
 }
@@ -7,7 +19,7 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    background-color: rgb(43, 112, 241);
+    background-color: rgb(40, 110, 240);
     border-radius: 20px;
     color: white;
     font-family: "Evo";
@@ -25,7 +37,7 @@ body {
     align-items: center;
     display: flex;
     border-radius: 7px;
-    background-color: rgb(0, 84, 240);
+    background-color: rgb(0, 75, 240);
     padding: 15px;
     margin-bottom: 30px;
 }
@@ -50,20 +62,20 @@ input {
 }
 
 .bt1 {
-    background-color: rgb(72, 235, 72);
-    border-color: rgb(72, 235, 72);
+    background-color: rgb(0, 255, 0);
+    border-color: rgb(0, 255, 0);
     font-family: "Evo";
 }
 
 .bt2 {
-    background-color: rgb(255, 251, 18);
-    border-color: rgb(255, 251, 18);
+    background-color: rgb(255, 255, 0);
+    border-color: rgb(255, 255, 0);
     font-family: "Evo";
 }
 
 .bt3 {
-    background-color: rgb(255, 36, 36);
-    border-color: rgb(255, 36, 36);
+    background-color: rgb(255, 0, 0);
+    border-color: rgb(255, 0, 0);
     font-family: "Evo";
 }
 
@@ -77,3 +89,48 @@ input {
     font-family: "Evo";
     src: url(Evogria.otf);
 }
+
+/* --------------------------------------------------------------------------------------------------------------- */
+
+/* --------------------------------------------------Login-------------------------------------------------------- */
+
+.btl {
+    background-color: rgb(0, 255, 255);
+    border-color: rgb(0, 255, 255);
+    font-family: "Evo";    
+}
+
+/* --------------------------------------------------------------------------------------------------------------- */
+
+/* --------------------------------------------------Menu-------------------------------------------------------- */
+
+.menu {
+    background-color: rgb(0, 75, 240);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+}
+
+.menu a:hover {
+    color: black;
+    transition: 0.3s;
+    text-decoration:underline;
+}
+
+.disclaimer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+}
+
+/* --------------------------------------------------------------------------------------------------------------- */
