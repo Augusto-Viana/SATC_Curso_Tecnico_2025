@@ -10,10 +10,6 @@
 
 /* --------------------------------------------------Cadastros---------------------------------------------------- */
 
-body {
-    background-color: rgb(255, 255, 255);
-}
-
 .container {
     justify-content: center;
     align-items: center;
@@ -95,8 +91,8 @@ input {
 /* --------------------------------------------------Login-------------------------------------------------------- */
 
 .btl {
-    background-color: rgb(0, 255, 255);
-    border-color: rgb(0, 255, 255);
+    background-color: rgb(0, 255, 0);
+    border-color: rgb(0, 255, 0);
     font-family: "Evo";    
 }
 
@@ -131,6 +127,130 @@ input {
     align-items: center;
     justify-content: center;
     color: rgb(0, 0, 0);
+}
+
+/* --------------------------------------------------------------------------------------------------------------- */
+
+/* --------------------------------------------------Home--------------------------------------------------------- */
+
+#bodyHome {
+    margin: 0;
+}
+
+.page {
+    height:100%;
+    width: 100%;
+}
+
+#line {
+    display: flex;
+    align-items: center;
+    background-color: rgb(0, 40, 240);
+    color: rgb(255, 255, 255);
+    height: 30px;
+}
+
+#line h5 {
+    margin: 0;
+    margin-left: 0.5%;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 75, 240);
+    height: 100%;
+    width: 100%;
+    font-family: "Ahkio";
+}
+
+#box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 425px;
+    justify-content: space-between;
+    margin: 1%;
+}
+
+#title2 {
+    font-size: 28px;
+}
+
+#title2 h1 {
+    margin: 0px;
+    width: 262px;
+    color: white;
+}
+
+#login {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 3%;
+    background-color: rgb(0, 40, 200);
+    border-radius: 20px;
+}
+
+#login h1 {
+    margin: 0px;
+}
+
+#login a {
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+}
+
+#login a:hover {
+    transition: 0.3s;
+    color: black;   
+}
+
+.image {
+justify-content: center;
+margin: 2%;
+}
+
+.img {
+    height: 75px;
+    width: 75;
+}
+
+#filter {
+    height: 496px;
+    width: 300px;
+    display: flex;
+    background-color: rgb(192, 192, 192);
+    flex-direction: column;
+}
+
+#filter h1 {
+    margin: 0px
+}
+
+#filters {
+    display: flex;
+    justify-content: center;
+}
+
+#filters select {
+    border-radius: 20px;
+    border-color: white;
+    font-size: 22px;
+    font-family: "Ahkio-Thin";
+}
+
+@font-face {
+    font-family: "Ahkio";
+    src: url(Ahkio-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Ahkio-Thin";
+    src: url(Ahkio-Thin.ttf);
 }
 
 /* --------------------------------------------------------------------------------------------------------------- */
