@@ -8,16 +8,16 @@ public class ex1 {
     public static void main(String [] args) {
         double[] temperatures = new double[10];
 
-        Scanner entrada = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         for(int i = 0; i < 10; i++) {
             System.out.print("Digite a temperatura: ");
-            temperatures[i] = entrada.nextDouble();
+            temperatures[i] = scanner.nextDouble();
         }
 
         for(int i = 0; i < 10; i++) {
             System.out.println("Temperaturas: " + temperatures[i]);
         }
-        entrada.close();
+        scanner.close();
     }
 }

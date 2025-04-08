@@ -9,12 +9,12 @@ public class ex3 {
         int positive = 0, negative = 0;
         int[] numbers = new int [10];
 
-        Scanner entrada = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         for(int i = 0; i < 10; i++) {
             
             System.out.print("Digite um número: ");
-            numbers[i] = entrada.nextInt();
+            numbers[i] = scanner.nextInt();
 
             if(numbers[i] >= 0) {
                 positive++;
@@ -30,6 +30,6 @@ public class ex3 {
         System.out.println("Números positivos: " + positive);
         System.out.println("Números negativos: " + negative);
 
-        entrada.close();
+        scanner.close();
     }
 }

@@ -9,12 +9,12 @@ public class ex2 {
         int bigger = 0, smaller = 99;
         int[] numbers = new int [10];
 
-        Scanner entrada = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         for(int i = 0; i < 10; i++) {
             
             System.out.print("Digite um número: ");
-            numbers[i] = entrada.nextInt();
+            numbers[i] = scanner.nextInt();
 
             if(numbers[i] > bigger) {
                 bigger = numbers[i];
@@ -30,6 +30,6 @@ public class ex2 {
         System.out.println("Maior valor do array: " + bigger);
         System.out.println("Menor valor do array: " + smaller);
 
-        entrada.close();
+        scanner.close();
     }
 }
