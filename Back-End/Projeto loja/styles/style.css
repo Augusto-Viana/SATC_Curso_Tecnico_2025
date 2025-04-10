@@ -156,6 +156,7 @@ html {
     font-weight: bold;
     animation: changeColor 0.5s infinite alternate;
     height: 30px;
+
 }
 
   @keyframes changeColor {
@@ -181,6 +182,8 @@ html {
     height: 140px;
     width: 100%;
     font-family: "Ahkio";
+    border-bottom: 2px solid rgb(0, 40, 200);
+    box-shadow: 3px 3px 10px rgb(0, 40, 200);
 }
 
 #box {
@@ -189,11 +192,14 @@ html {
     align-items: center;
     width: 425px;
     justify-content: space-between;
-    margin: 1%;
+    margin: 20px;
+    position: absolute;
 }
 
 #title2 {
     font-size: 28px;
+    position: absolute;
+    left: 175px;
 }
 
 #title2 h1 {
@@ -206,9 +212,10 @@ html {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-right: 3%;
     background-color: rgb(0, 40, 200);
     border-radius: 20px;
+    right: 15px;
+    position: fixed;
 }
 
 #login h1 {
@@ -228,7 +235,8 @@ html {
 
 .image {
 justify-content: center;
-margin: 2%;
+position: absolute;
+left: 10px;
 }
 
 .img {
@@ -240,20 +248,25 @@ margin: 2%;
     height: 100%;
     width: 300px;
     display: flex;
-    background-color: rgb(192, 192, 192);
+    font-family: "Verdana";
+    font-size: 20px;
+    background-color: rgb(255, 255, 255);
     flex-direction: column;
     position: fixed;
+    padding: 10px;
+    border-right: 2px solid rgb(185, 185, 185);
+    box-shadow: 3px 3px 10px rgb(173, 173, 173);
+}
+
+#filter select {
+    font-size: 20px;
+    border-color: white;
+    background-color: rgb(236, 236, 236);
+    width: 200px;
 }
 
 #filter h1 {
     margin: 0px
-}
-
-#filters {
-    display: flex;
-    justify-content: center;
-    font-family: "Ahkio-Thin";
-    font-size: 30px;
 }
 
 #filters select {
@@ -261,6 +274,13 @@ margin: 2%;
     border-color: white;
     font-size: 22px;
     font-family: "Ahkio-Thin";
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 20px;
 }
 
 @font-face {
