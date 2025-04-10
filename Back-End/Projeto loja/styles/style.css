@@ -161,10 +161,10 @@ html {
 
   @keyframes changeColor {
     0%   { color: rgb(108, 2, 170); }
-    10%  { color: red; }
-    25%  { color: orange; }
-    50%  { color: yellow; }
-    75%  { color: rgb(0, 255, 0); }
+    20%  { color: red; }
+    40%  { color: orange; }
+    60%  { color: yellow; }
+    80%  { color: rgb(0, 255, 0); }
     100% { color: rgb(0, 238, 255); }
   }
 
@@ -252,7 +252,7 @@ left: 10px;
     font-size: 20px;
     background-color: rgb(255, 255, 255);
     flex-direction: column;
-    position: fixed;
+    /* position: fixed; */
     padding: 10px;
     border-right: 2px solid rgb(185, 185, 185);
     box-shadow: 3px 3px 10px rgb(173, 173, 173);
@@ -281,6 +281,31 @@ left: 10px;
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 20px;
+}
+
+.search {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.search input {
+    background-color: rgb(223, 223, 223);
+}
+
+#display {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+#products {
+    flex: 1;
+    height: 100%;
+    width: 100%;
 }
 
 @font-face {
