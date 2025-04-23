@@ -32,142 +32,112 @@ $db      = mysql_select_db('loja');
         </div>
         <div id="display">
             <div id="filter">
-                <div class="filter-options">
-                    <div>
-                        Categoria
+                <form name="form" method="post" action="home.php">
+                    <div class="filter-options">
+                        <div>
+                            Categoria
+                        </div>
+                        <div>
+                            <select name="category" id="">
+                                <option value="text" selected="selected">Todas as categorias</option>
+                                <?php
+                                    $query = mysql_query("SELECT codigo, nome FROM categoria");
+                                    while ($categories = mysql_fetch_array($query)) { ?>
+                                        <option value="<?php echo $categories['codigo']; ?>">
+                                            <?php echo $categories['nome']; ?>
+                                        </option>
+                                    <?php }
+                                    ?>
+                            </select>
+                        </div>             
                     </div>
-                    <div>
-                        <select name="category" id="">
-                            <option value="text" selected="selected">Todas as categorias</option>
-                            <?php
-                                $query = mysql_query("SELECT codigo, nome FROM categoria");
-                                while ($categories = mysql_fetch_array($query)) { ?>
-                                    <option value="<?php echo $categories['codigo']; ?>">
-                                        <?php echo $categories['nome']; ?>
-                                    </option>
-                                <?php }
-                                ?>
-                        </select>
-                    </div>             
-                </div>
-                <div class="filter-options">
-                    <div>
-                        Marca
+                    <div class="filter-options">
+                        <div>
+                            Marca
+                        </div>
+                        <div>
+                            <select name="brand" id="">
+                                <option value="text" selected="selected">Todas as marcas</option>
+                                <?php
+                                    $query = mysql_query("SELECT codigo, nome FROM marca");
+                                    while ($brands = mysql_fetch_array($query)) { ?>
+                                        <option value="<?php echo $brands['codigo']; ?>">
+                                            <?php echo $brands['nome']; ?>
+                                        </option>
+                                    <?php }
+                                    ?>
+                            </select>
+                        </div>
                     </div>
-                    <div>
-                        <select name="brand" id="">
-                            <option value="text" selected="selected">Todas as marcas</option>
-                            <?php
-                                $query = mysql_query("SELECT codigo, nome FROM marca");
-                                while ($brands = mysql_fetch_array($query)) { ?>
-                                    <option value="<?php echo $brands['codigo']; ?>">
-                                        <?php echo $brands['nome']; ?>
-                                    </option>
-                                <?php }
-                                ?>
-                        </select>
+                    <div class="filter-options">
+                        <div>
+                            Tipo
+                        </div>
+                        <div>
+                            <select name="type" id="">
+                                <option value="text" selected="selected">Todos os tipos</option>
+                                <?php
+                                    $query = mysql_query("SELECT codigo, nome FROM tipo");
+                                    while ($types = mysql_fetch_array($query)) { ?>
+                                        <option value="<?php echo $types['codigo']; ?>">
+                                            <?php echo $types['nome']; ?>
+                                        </option>
+                                    <?php }
+                                    ?>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="filter-options">
-                    <div>
-                        Tipo
+                    <div class="search">
+                        <input type="submit" name="search" value="PESQUISAR">                        
                     </div>
-                    <div>
-                        <select name="type" id="">
-                            <option value="text" selected="selected">Todos os tipos</option>
-                            <?php
-                                $query = mysql_query("SELECT codigo, nome FROM tipo");
-                                while ($types = mysql_fetch_array($query)) { ?>
-                                    <option value="<?php echo $types['codigo']; ?>">
-                                        <?php echo $types['nome']; ?>
-                                    </option>
-                                <?php }
-                                ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="search">
-                    <input type="submit" name="search" value="PESQUISAR">                        
-                </div>
+                </form>
             </div>
             <div id="products">
-            <?php
-                if (!isset($_POST['search'])) {
-                    $sql_produtos = "SELECT descricao, cor, tamanho, preco, foto1 FROM produto ORDER BY codigo DESC LIMIT 8";
-                    $result = mysql_query($sql_produtos);
-
-                    if (mysql_num_rows($result) > 0) {
-                        echo "<div class='produtos-container'>";
-                        while ($dados = mysql_fetch_array($result)) {
-                            echo "<div class='produto-item'>";
-                            echo "<div>";
-                            echo "<img src='../images/products_images/" . htmlspecialchars($dados['foto1']) . "' alt='Imagem 1' class='imagem-produto' />";
-                            echo "</div>";
-                            echo "<div class='produto-info'>";
-                            echo "<p>Descrição: " . htmlspecialchars($dados['descricao']) . "</p>";
-                            echo "<p>Cor: " . htmlspecialchars($dados['cor']) . "</p>";
-                            echo "<p>Tamanho: " . htmlspecialchars($dados['tamanho']) . "</p>";
-                            echo "<p>Preço R$: " . number_format($dados['preco'], 2, ',', '.') . "</p>";
-                            echo "</div>";
-                            echo "</div>";
-                        }
-                        echo "</div>";
-                    } else {
-                        echo "<h1>Nenhum produto disponível.</h1>";
-                    }
-                }
-                ?>
-
-
                 <?php
-                if (isset($_POST['pesquisar'])) {
-                    // Pegando os filtros
+                if (isset($_POST['search'])) {
+
                     $brands         = (empty($_POST['marca'])) ? 'null' : $_POST['marca'];
                     $categories     = (empty($_POST['categoria'])) ? 'null' : $_POST['categoria'];
                     $types = (empty($_POST['tipo'])) ? 'null' : $_POST['tipo'];
 
-                    // Construindo a consulta de produtos com base nos filtros
-                    $sql_produtos = "SELECT produto.descricao, produto.cor, produto.tamanho, produto.preco, produto.foto1, produto.foto2
+                    $sql_products = "SELECT produto.descricao, produto.cor, produto.tamanho, produto.preco, produto.foto1, produto.foto2
                                     FROM produto, marca, categoria, tipo
                                     WHERE produto.codmarca = marca.codigo
                                     AND produto.codcategoria = categoria.codigo
                                     AND produto.codtipo = tipo.codigo";
 
-                    // Adicionando filtros à consulta
                     if ($brands != 'null') {
-                        $sql_produtos .= " AND marca.codigo = $brands";
+                        $sql_products .= " AND marca.codigo = $brands";
                     }
 
                     if ($categories != 'null') {
-                        $sql_produtos .= " AND categoria.codigo = $categories";
+                        $sql_products .= " AND categoria.codigo = $categories";
                     }
 
                     if ($types != 'null') {
-                        $sql_produtos .= " AND tipo.codigo = $types";
+                        $sql_products .= " AND tipo.codigo = $types";
                     }
 
-                    // Executando a consulta
-                    $seleciona_produtos = mysql_query($sql_produtos);
+                    $select_products = mysql_query($sql_products);
 
-                    // Verificando se a consulta retornou resultados
-                    if (mysql_num_rows($seleciona_produtos) == 0) {
+                    if (mysql_num_rows($select_products) == 0) {
                         echo '<h1>Desculpe, mas sua busca não retornou resultados.</h1>';
                     } else {
-                        echo "<div class='produtos-container'>";
-                        while ($dados = mysql_fetch_object($seleciona_produtos)) {
-                            echo "<div class='produto-item'>";
+                    echo "<div class='products-rows'>"
+                        while ($data = mysql_fetch_object($select_products)) {
+                            echo "<div class='items'>";
                             echo "<div>";
-                            echo "<img src='../imgs/imagensProdutos/" . htmlspecialchars($dados->foto1) . "' alt='Imagem 1' class='imagem-produto' />";
-                            echo "</div>"; // .imagens
+                            echo "<img src='../images/products_images/" . htmlspecialchars($data->foto1) . "' alt='Imagem 1' class='products-images' />";
+                            echo "</div>"; 
                             echo "<div class='produto-info'>";
-                            echo "<p>Descrição: " . htmlspecialchars($dados->descricao) . "</p>";
-                            echo "<p>Cor: " . htmlspecialchars($dados->cor) . "</p>";
-                            echo "<p>Tamanho: " . htmlspecialchars($dados->tamanho) . "</p>";
-                            echo "<p> Preço R$: " . number_format($dados->preco, 2, ',', '.') . "</p>";
-                            echo "</div>"; // .produto-info
-                            echo "</div>"; // .produto-item
+                            echo "<p>Descrição: " . htmlspecialchars($data->descricao) . "</p>";
+                            echo "<p>Cor: " . htmlspecialchars($data->cor) . "</p>";
+                            echo "<p>Tamanho: " . htmlspecialchars($data->tamanho) . "</p>";
+                            echo "<p> Preço R$: " . number_format($data->preco, 2, ',', '.') . "</p>";
+                            echo "</div>"; 
+                            echo "</div>"; 
                         }
-                        echo "</div>"; // .produtos-container
+                        echo "<div/>";
                     }
                 }
                 ?>
