@@ -246,6 +246,7 @@ left: 10px;
 
 #filter {
     height: auto;
+    min-height: 454;
     width: 300px;
     display: flex;
     font-family: "Verdana";
@@ -314,7 +315,7 @@ left: 10px;
     overflow: auto;
 }
 
-.items {
+.items form {
     display: flex;
     flex-direction: column;
     align-items: center;

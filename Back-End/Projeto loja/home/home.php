@@ -100,7 +100,7 @@ $db      = mysql_select_db('loja');
                     $categories     = (empty($_POST['categoria'])) ? 'null' : $_POST['categoria'];
                     $types = (empty($_POST['tipo'])) ? 'null' : $_POST['tipo'];
 
-                    $sql_products = "SELECT produto.descricao, produto.cor, produto.tamanho, produto.preco, produto.foto1, produto.foto2
+                    $sql_products = "SELECT produto.codigo, produto.descricao, produto.cor, produto.tamanho, produto.preco, produto.foto1, produto.foto2
                                     FROM produto, marca, categoria, tipo
                                     WHERE produto.codmarca = marca.codigo
                                     AND produto.codcategoria = categoria.codigo
@@ -126,6 +126,8 @@ $db      = mysql_select_db('loja');
                         echo "<div class='products-rows'>";
                         while ($data = mysql_fetch_object($select_products)) {
                             echo "<div class='items'>";
+                            echo "<form method='post'";
+                            echo "<input type='hidden' name='codigo' value='" . htmlspecialchars($data->codigo) . "' />";
                             echo "<div>";
                             echo "<img src='../images/products_images/" . htmlspecialchars($data->foto1) . "' alt='Imagem 1' class='products-images' />";
                             echo "</div>"; 
@@ -134,8 +136,10 @@ $db      = mysql_select_db('loja');
                             echo "<p>Cor: " . htmlspecialchars($data->cor) . "</p>";
                             echo "<p>Tamanho: " . htmlspecialchars($data->tamanho) . "</p>";
                             echo "<p> Preço R$: " . number_format($data->preco, 2, ',', '.') . "</p>";
+                            echo "<button type='submit' class='buy'>COMPRAR</button>";
                             echo "</div>"; 
-                            echo "</div>"; 
+                            echo "</div>";
+                            echo "</form>"; 
                         }
                         echo "</div>";
                     }
