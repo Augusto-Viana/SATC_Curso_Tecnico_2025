@@ -123,7 +123,7 @@ $db      = mysql_select_db('loja');
                     if (mysql_num_rows($select_products) == 0) {
                         echo '<h1>Desculpe, mas sua busca não retornou resultados.</h1>';
                     } else {
-                    echo "<div class='products-rows'>"
+                        echo "<div class='products-rows'>";
                         while ($data = mysql_fetch_object($select_products)) {
                             echo "<div class='items'>";
                             echo "<div>";
@@ -137,7 +137,7 @@ $db      = mysql_select_db('loja');
                             echo "</div>"; 
                             echo "</div>"; 
                         }
-                        echo "<div/>";
+                        echo "</div>";
                     }
                 }
                 ?>

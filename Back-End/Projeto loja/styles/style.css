@@ -215,7 +215,7 @@ html {
     background-color: rgb(0, 40, 200);
     border-radius: 20px;
     right: 15px;
-    position: fixed;
+    position: absolute;
 }
 
 #login h1 {
@@ -245,7 +245,7 @@ left: 10px;
 }
 
 #filter {
-    height: 100%;
+    height: auto;
     width: 300px;
     display: flex;
     font-family: "Verdana";
@@ -259,9 +259,11 @@ left: 10px;
 
 #filter select {
     font-size: 20px;
-    border-color: white;
-    background-color: rgb(236, 236, 236);
+    border-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
+    color: white;
     width: 200px;
+    font-family: "Verdana";
 }
 
 #filter h1 {
@@ -290,7 +292,9 @@ left: 10px;
 }
 
 .search input {
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(0, 0, 0);
+    border-color: rgb(0, 0, 0);
+    color: white;
     font-family: "Verdana";
     border-radius: 10px;
 }
@@ -298,15 +302,14 @@ left: 10px;
 #display {
     display: flex;
     flex-direction: row;
-    height: 100%;
     width: 100%;
-    position: fixed;
+    position: relative;
 }
 
 #products {
     flex: 1;
-    height: 100%;
-    width: 100%;
+    height: auto;
+    width: auto;
     flex-wrap: wrap;
     overflow: auto;
 }
@@ -315,10 +318,15 @@ left: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(0, 0, 0);
+    color: white;
     border-radius: 10px;
     width: 275px;
     margin: 20px;
+}
+
+.items p {
+    padding-left: 5%;
 }
 
 .products-images {
@@ -328,7 +336,10 @@ left: 10px;
 }
 
 .products-rows {
+    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
 }
 
 @font-face {
