@@ -1,6 +1,39 @@
 <?php
+session_start();
 $connect = mysql_connect('localhost', 'root', ''); 
 $db      = mysql_select_db('loja'); 
+
+$status="";
+
+
+if (isset($_POST['codigo']) && $_POST['codigo']!=""){
+   $codigo = $_POST['codigo'];
+   $resultado = mysql_query("SELECT descricao,preco,foto1 FROM produto WHERE codigo = '$codigo'");
+   $row = mysql_fetch_assoc($resultado);
+   $descricao = $row['descricao'];
+   $preco = $row['preco'];
+   $foto1 = $row['foto1'];
+
+   $cartArray = array($codigo=>array('descricao'=>$descricao,'preco'=>$preco,'quantity'=>1,'foto'=>$foto1));
+
+   if(empty($_SESSION["shopping_cart"])) {
+    $_SESSION["shopping_cart"] = $cartArray;
+    $status = "<div class='box'>Produto foi add ao carrinho !</div>";
+    }
+    else{
+    $array_keys = array_keys($_SESSION["shopping_cart"]);
+
+   if(in_array($codigo,$array_keys)) {
+	$status = "<div class='box' style='color:red;'>
+	Produto foi adicionado ao carrinho!</div>";
+    }
+    else {
+    $_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"],$cartArray);
+    $status = "<div class='box'>Produto  foi add ao carrinho!</div>";
+	}
+
+	}
+}
 ?>
 
 <html lang="PT-BR">
@@ -18,15 +51,28 @@ $db      = mysql_select_db('loja');
                 <h5>Época de luta corpo a corpo com os peixes! 40% off em botas impermeáveis!</h5>
         </div>
         <div class="header">
-            <div id="box">
+            <div class="box">
                 <div class="image">
                     <img src="../images/Zé vestimentas!.png" alt="Erro ao carregar a imagem =(" class="img">
                 </div>
-                <div id="title2">
+                <div class="title2">
                     <h1>Zé roupas</h1>
                 </div>
+                <div class="cart">
+                <?php
+                    if(!empty($_SESSION["shopping_cart"])) {
+                        $cart_count = count(array_keys($_SESSION["shopping_cart"]));
+                    ?>
+                    <div class="cart_div">
+                    <a href="cart.php"><img src="https://i.pinimg.com/736x/be/8f/13/be8f135b9899f895412004b7a37e5647.jpg" height=50 width=50 alt="Erro!"/>Carrinho<span>
+                    <?php echo $cart_count; ?></span></a>
+                    </div>
+                    <?php
+                    }
+                ?>                
+                </div>
             </div>
-            <div id="login">
+            <div class="login">
                 <h1><a href="../login/login.html">Login</a></h1>
             </div>
         </div>
@@ -39,7 +85,7 @@ $db      = mysql_select_db('loja');
                         </div>
                         <div>
                             <select name="category" id="">
-                                <option value="text" selected="selected">Todas as categorias</option>
+                                <option value="" selected="selected">Todas as categorias</option>
                                 <?php
                                     $query = mysql_query("SELECT codigo, nome FROM categoria");
                                     while ($categories = mysql_fetch_array($query)) { ?>
@@ -57,7 +103,7 @@ $db      = mysql_select_db('loja');
                         </div>
                         <div>
                             <select name="brand" id="">
-                                <option value="text" selected="selected">Todas as marcas</option>
+                                <option value="" selected="selected">Todas as marcas</option>
                                 <?php
                                     $query = mysql_query("SELECT codigo, nome FROM marca");
                                     while ($brands = mysql_fetch_array($query)) { ?>
@@ -75,7 +121,7 @@ $db      = mysql_select_db('loja');
                         </div>
                         <div>
                             <select name="type" id="">
-                                <option value="text" selected="selected">Todos os tipos</option>
+                                <option value="" selected="selected">Todos os tipos</option>
                                 <?php
                                     $query = mysql_query("SELECT codigo, nome FROM tipo");
                                     while ($types = mysql_fetch_array($query)) { ?>
@@ -96,9 +142,9 @@ $db      = mysql_select_db('loja');
                 <?php
                 if (isset($_POST['search'])) {
 
-                    $brands         = (empty($_POST['marca'])) ? 'null' : $_POST['marca'];
-                    $categories     = (empty($_POST['categoria'])) ? 'null' : $_POST['categoria'];
-                    $types = (empty($_POST['tipo'])) ? 'null' : $_POST['tipo'];
+                    $brands         = (empty($_POST['brand'])) ? 'null' : $_POST['brand'];
+                    $categories     = (empty($_POST['category'])) ? 'null' : $_POST['category'];
+                    $types          = (empty($_POST['type'])) ? 'null' : $_POST['type'];
 
                     $sql_products = "SELECT produto.codigo, produto.descricao, produto.cor, produto.tamanho, produto.preco, produto.foto1, produto.foto2
                                     FROM produto, marca, categoria, tipo
@@ -126,17 +172,19 @@ $db      = mysql_select_db('loja');
                         echo "<div class='products-rows'>";
                         while ($data = mysql_fetch_object($select_products)) {
                             echo "<div class='items'>";
-                            echo "<form method='post'";
+                            echo "<form method='post' action='home.php'>";
                             echo "<input type='hidden' name='codigo' value='" . htmlspecialchars($data->codigo) . "' />";
                             echo "<div>";
                             echo "<img src='../images/products_images/" . htmlspecialchars($data->foto1) . "' alt='Imagem 1' class='products-images' />";
                             echo "</div>"; 
-                            echo "<div class='produto-info'>";
+                            echo "<div class='product-info'>";
                             echo "<p>Descrição: " . htmlspecialchars($data->descricao) . "</p>";
                             echo "<p>Cor: " . htmlspecialchars($data->cor) . "</p>";
                             echo "<p>Tamanho: " . htmlspecialchars($data->tamanho) . "</p>";
                             echo "<p> Preço R$: " . number_format($data->preco, 2, ',', '.') . "</p>";
+                            echo "<div class='button-info'>";
                             echo "<button type='submit' class='buy'>COMPRAR</button>";
+                            echo "</div>"; 
                             echo "</div>"; 
                             echo "</div>";
                             echo "</form>"; 

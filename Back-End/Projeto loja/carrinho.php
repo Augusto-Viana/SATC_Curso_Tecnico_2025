@@ -5,6 +5,7 @@ $banco    = mysql_select_db("loja");
 
 $status="";
 
+
 if (isset($_POST['codigo']) && $_POST['codigo']!=""){
    $codigo = $_POST['codigo'];
    $resultado = mysql_query("SELECT descricao,preco,foto1 FROM produto WHERE codigo = '$codigo'");
@@ -53,6 +54,7 @@ if(!empty($_SESSION["shopping_cart"])) {
 </div>
 <?php
 }
+?>
 
 $resultado = mysql_query("SELECT codigo,foto1,descricao,preco FROM produto");
 echo "Produtos encontrados: "."<br><br>";
