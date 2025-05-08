@@ -190,16 +190,16 @@ html {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 425px;
+    width: 550px;
     justify-content: space-between;
     margin: 20px;
-    position: absolute;
+    position: relative;
 }
 
 .title2 {
     font-size: 28px;
-    position: absolute;
-    left: 175px;
+    position: relative;
+    left: 15px;
 }
 
 .title2 h1 {
@@ -239,7 +239,7 @@ html {
 
 .image {
 justify-content: center;
-position: absolute;
+position: relative;
 left: 10px;
 }
 
@@ -355,36 +355,41 @@ left: 10px;
 }
 
 .button-info button {
-    background-color: rgb(255, 80, 1);
-    border-color: rgb(255, 80, 1);
+    background-color: rgb(0, 229, 255, 1);
+    border-color: rgb(0, 229, 255, 1);
     color: rgb(0, 0, 0);
     border-radius: 10px;
 }
 
 .cart_div {
 	float:right;
+    right: 50px;
 	font-weight:bold;
 	position:relative;
 	}
+
 .cart_div a {
-	color:#000;
+    display: flex;
+    flex-direction: column;
+	color:#ffffff;
+    text-decoration: none;
 	}
+
 .cart_div span {
 	font-size: 12px;
 	line-height: 14px;
-	background: #F68B1E;
+	background: rgb(0, 229, 255, 1);
 	padding: 2px;
-	border: 2px solid #fff;
+	border: 2px solid #000000;
 	border-radius: 50%;
 	position: absolute;
 	top: -1px;
-	left: 13px;
-	color: #fff;
-	width: 20px;
-	height: 20px;
+	left: 20px;
+	color: #000000;
+	width: 15px;
+	height: 15px;
 	text-align: center;
 	}
-
 
 .cart .remove {
 	background: none;
@@ -393,6 +398,7 @@ left: 10px;
 	cursor: pointer;
 	padding: 0px;
 	}
+
 .cart .remove:hover {
 	text-decoration:underline;
 	}

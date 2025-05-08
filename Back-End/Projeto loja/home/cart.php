@@ -1,24 +1,20 @@
 <?php
 session_start();
-unset($_SESSION["shopping_cart"]);
-header("Location: cart.php"); // Redireciona para atualizar a página
-mysql_set_charset('utf8', $connect);
-header('Content-Type: text/html; charset=utf-8');
-exit();
-?>
-<?php
-session_start();
 $status="";
-if (isset($_POST['action']) && $_POST['action']=="remove"){
-    if(!empty($_SESSION["shopping_cart"])) {
-        foreach($_SESSION["shopping_cart"] as $key => $value) {
-            if($_POST["codigo"] == $key){
-                unset($_SESSION["shopping_cart"][$key]);
+if (isset($_POST['action']) && $_POST['action'] === "remove") {
+    if (!empty($_SESSION["shopping_cart"])) {
+        foreach ($_SESSION["shopping_cart"] as $index => $item) {
+            if ($item['codigo'] == $_POST['codigo']) {
+                unset($_SESSION["shopping_cart"][$index]);
                 $status = "<div class='message-box error'>
-                Produto foi removido do carrinho!</div>";
+                    O produto foi removido do carrinho com sucesso!
+                </div>";
+                break; 
             }
-            if(empty($_SESSION["shopping_cart"]))
-                unset($_SESSION["shopping_cart"]);
+        }
+
+        if (empty($_SESSION["shopping_cart"])) {
+            unset($_SESSION["shopping_cart"]);
         }
     }
 }
@@ -32,36 +28,39 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
     }
 }
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="PT-BR">
 <head>
-    <title>Carrinho De Compras</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../images/Zé.png">
+    <title>MeuCarrinhoDeComprasZéRoupas.com.br</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: rgb(255, 255, 255);
+            color: #fff;
             margin: 20px;
         }
 
         .cart {
-            background-color: #fff;
+            background-color: rgb(0, 40, 240);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        100%;
+            height: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .table th, .table td {
             padding: 10px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #fff;
         }
 
         .table th {
-            background-color: #f8f8f8;
+            background-color: rgb(0, 75, 240);
         }
 
         .table tbody tr:last-child td {
@@ -77,7 +76,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
         }
 
         .remove {
-            background-color: #d9534f;
+            background-color:rgb(255, 8, 0);
             color: white;
             border: none;
             padding: 8px 12px;
@@ -91,14 +90,16 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
         }
 
         .remove:hover {
-            background-color: #c9302c;
+            background-color:rgb(170, 0, 0);
         }
 
         .quantity {
             padding: 8px;
-            border: 1px solid #ccc;
+            border: 1px solidrgb(255, 255, 255);
             border-radius: 4px;
             width: 60px;
+            background-color: black;
+            color: white;
         }
 
         .total-price {
@@ -111,7 +112,15 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
             text-align: center;
             padding: 20px;
             font-style: italic;
-            color: #777;
+            color: #fff;
+        }
+
+        .empty-cart a {
+            color: white;
+        }
+
+        .empty-cart a:hover {
+            color: black;
         }
 
         .message-box {
@@ -123,17 +132,18 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
         .message-box.success {
             background-color: #d4edda;
             color: #155724;
-            border: 1px solid #c3e6cb;
+            border: 1px solid #155724;
         }
 
         .message-box.error {
             background-color: #f8d7da;
             color: #721c24;
-            border: 1px solid #f5c6cb;
+            border: 1px solid #721c24;
         }
 
         .cart-actions {
             margin-top: 20px;
+            margin-bottom: 25px;
             text-align: right;
         }
 
@@ -160,7 +170,8 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 <body>
 
 <div class="cart">
-    <h1>Seu Carrinho de Compras</h1>
+    
+    <h1>MEU CARRINHO</h1>
     <?php
     if(isset($_SESSION["shopping_cart"])){
         $total_price = 0;
@@ -181,7 +192,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
         foreach ($_SESSION["shopping_cart"] as $product){
         ?>
         <tr>
-            <td><img src='<?php echo "fotos/".$product['foto1']; ?>' alt="<?php echo $product["descricao"]; ?>" /></td>
+            <td><img src='<?php echo "../images/products-images".$product['foto1']; ?>' alt="<?php echo $product["descricao"]; ?>" /></td>
             <td><?php echo $product["descricao"]; ?></td>
             <td>
                 <form method='post' action=''>
@@ -219,12 +230,13 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
         </tr>
         </tfoot>
        <div class="cart-actions">
-        <a href="/" class="button">Continuar Comprando</a>
+        <a href="home.php" class="button">Continuar Comprando</a>
         <button class="button" onclick="alert('Implementar Checkout!')">Finalizar Compra</button>
-    </div>
+
+    </table>
     <?php
     } else {
-        echo "<div class='empty-cart'><h3>Seu carrinho está vazio!</h3><p><a href='/'>Voltar para a loja</a></p></div>";
+        echo "<div class='empty-cart'><h3>Não tem nada aqui, por enquanto :)</h3><p><a href='./home.php'>Voltar para a Zé Roupas</a></p></div>";
     }
     ?>
 </div>
