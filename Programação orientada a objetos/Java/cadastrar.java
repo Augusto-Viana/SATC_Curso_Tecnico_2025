@@ -6,42 +6,42 @@ public class cadastrar {
         Scanner scanner = new Scanner(System.in);
         Oficina oficina = new Oficina();
         
-        // Menu inicial para o usuário
-        System.out.println("Escolha o tipo de veículo:");
-        System.out.println("1. Automóvel");
+        // Menu inicial para o usuï¿½rio
+        System.out.println("Escolha o tipo de veï¿½culo:");
+        System.out.println("1. Automï¿½vel");
         System.out.println("2. Bicicleta");
-        System.out.print("Digite sua opção (1 ou 2): ");
+        System.out.print("Digite sua opï¿½ï¿½o (1 ou 2): ");
         int opcao = scanner.nextInt();
-        scanner.nextLine(); // Consumir a nova linha após o número
+        scanner.nextLine(); // Consumir a nova linha apï¿½s o nï¿½mero
         
-        // Variável para armazenar o veículo escolhido
+        // Variï¿½vel para armazenar o veï¿½culo escolhido
         veiculo veiculoEscolhido = null;
 
-        // Pedir informações do veículo (Código, Descrição, Marca e Modelo)
-        System.out.print("Digite o código do veículo: ");
+        // Pedir informaï¿½ï¿½es do veï¿½culo (Cï¿½digo, Descriï¿½ï¿½o, Marca e Modelo)
+        System.out.print("Digite o cï¿½digo do veï¿½culo: ");
         String codigo = scanner.nextLine();
-        System.out.print("Digite a descrição do veículo: ");
+        System.out.print("Digite a descriï¿½ï¿½o do veï¿½culo: ");
         String descricao = scanner.nextLine();
-        System.out.print("Digite a marca do veículo: ");
+        System.out.print("Digite a marca do veï¿½culo: ");
         String marca = scanner.nextLine();
-        System.out.print("Digite o modelo do veículo: ");
+        System.out.print("Digite o modelo do veï¿½culo: ");
         String modelo = scanner.nextLine();
         
-        // Decisão baseada na opção do usuário
+        // Decisï¿½o baseada na opï¿½ï¿½o do usuï¿½rio
         if (opcao == 1) {
             veiculoEscolhido = new automovel(codigo, descricao, marca, modelo);
-            System.out.println("\nVocê escolheu um Automóvel.");
+            System.out.println("\nVocï¿½ escolheu um Automï¿½vel.");
         } else if (opcao == 2) {
             veiculoEscolhido = new bicicleta(codigo, descricao, marca, modelo);
-            System.out.println("\nVocê escolheu uma Bicicleta.");
+            System.out.println("\nVocï¿½ escolheu uma Bicicleta.");
         } else {
-            System.out.println("Opção inválida! O programa será encerrado.");
-            return; // Encerra a execução
+            System.out.println("Opï¿½ï¿½o invï¿½lida! O programa serï¿½ encerrado.");
+            return; // Encerra a execuï¿½ï¿½o
         }
                
         veiculoEscolhido.exibirInformacoes();
         
-        System.out.println("\nIniciando os serviços para o veículo escolhido...");
+        System.out.println("\nIniciando os serviï¿½os para o veï¿½culo escolhido...");
         oficina.realizarServico(veiculoEscolhido);
         
         scanner.close();

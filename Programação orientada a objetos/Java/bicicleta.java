@@ -5,19 +5,19 @@ class bicicleta extends veiculo {
         super(codigo, descricao, marca, modelo);
     }
 
-    // Métodos específicos para Bicicleta
+    // Mï¿½todos especï¿½ficos para Bicicleta
     public void checkList() {
-        super.checkList();  // Chama o método da classe base
-        System.out.println("Verificando as condições das rodas, corrente e freios da bicicleta...");
+        super.checkList();  // Chama o mï¿½todo da classe base
+        System.out.println("Verificando as condiï¿½ï¿½es das rodas, corrente e freios da bicicleta...");
     }
 
     public void adjust() {
-        super.adjust();  // Chama o método da classe base
+        super.adjust();  // Chama o mï¿½todo da classe base
         System.out.println("Ajustando os freios, calibrando os pneus e lubrificando a corrente da bicicleta...");
     }
 
     public void cleanup() {
-        super.cleanup();  // Chama o método da classe base
+        super.cleanup();  // Chama o mï¿½todo da classe base
         System.out.println("Lavando a bicicleta, limpando as rodas e o quadro...");
     }
 }

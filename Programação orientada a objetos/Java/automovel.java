@@ -6,17 +6,17 @@ class automovel extends veiculo {
     }
 
     public void checkList() {
-        super.checkList();  // Chama o método da classe base
-        System.out.println("Verificando condições do motor, pneus e sistema de freios do automóvel...");
+        super.checkList();  // Chama o mï¿½todo da classe base
+        System.out.println("Verificando condiï¿½ï¿½es do motor, pneus e sistema de freios do automï¿½vel...");
     }
 
     public void adjust() {
-        super.adjust();  // Chama o método da classe base
-        System.out.println("Realizando ajustes no motor, alinhamento e troca de óleo do automóvel...");
+        super.adjust();  // Chama o mï¿½todo da classe base
+        System.out.println("Realizando ajustes no motor, alinhamento e troca de ï¿½leo do automï¿½vel...");
     }
 
     public void cleanup() {
-        super.cleanup();  // Chama o método da classe base
-        System.out.println("Lavando o carro, limpando os vidros e aspirando o interior do automóvel...");
+        super.cleanup();  // Chama o mï¿½todo da classe base
+        System.out.println("Lavando o carro, limpando os vidros e aspirando o interior do automï¿½vel...");
     }
 }
