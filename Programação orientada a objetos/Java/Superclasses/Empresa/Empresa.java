@@ -122,6 +122,8 @@ public class Empresa {
         } else {
             System.out.println("Erro!");
         }
+
+        System.out.print("O salário do funcionário é: " + salario);
     }
 
     public static void main(String[] args) {
@@ -164,12 +166,13 @@ public class Empresa {
             String especializacao = scanner.nextLine();
 
             select = new Engenheiro(codigo, nome, sexo, horas, valor, crea, especializacao);
-            Engenheiro.info();
+            select.info();
         } else if (escolha == 2) {
             System.out.print("Área de gestão: ");
             String area = scanner.nextLine();
 
             select = new Diretor(codigo, nome, sexo, horas, valor, area);
+            select.info();
         } else if (escolha == 3) {
             System.out.print("Setor: ");
             String setor = scanner.nextLine();
@@ -177,15 +180,16 @@ public class Empresa {
             String categoria = scanner.nextLine();
 
             select = new Secretario(codigo, nome, sexo, horas, valor, setor, categoria);
+            select.info();
         } else if (escolha == 4) {
             System.out.print("Setor: ");
             String setor = scanner.nextLine();
 
             select = new Gerente(codigo, nome, sexo, horas, valor, setor);
+            select.info();
         } else {
             System.out.println("Opção inválida.");
-        } 
-
+        }
         scanner.close();
     }
 }
