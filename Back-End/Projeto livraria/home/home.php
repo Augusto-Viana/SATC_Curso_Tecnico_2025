@@ -75,13 +75,10 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
             </div>
         </div>
         <div id="display">
-            <div id="filter">
+            <div class="filter">
                 <form name="form" method="post" action="home.php">
-                    <div class="filter-options">
-                        <div class="category">
-                            Categoria
-                        </div>
-                        <div>
+                    <div class="filters">
+                        <div class="filter-options">
                             <select name="category" id="">
                                 <option value="" selected="selected">Todas as categorias</option>
                                 <?php
@@ -93,13 +90,8 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                                     <?php }
                                     ?>
                             </select>
-                        </div>             
-                    </div>
-                    <div class="filter-options">
-                        <div class="category">
-                            Autor
                         </div>
-                        <div>
+                        <div class="filter-options">
                             <select name="author" id="">
                                 <option value="" selected="selected">Todas os autores</option>
                                 <?php
@@ -112,12 +104,7 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                                     ?>
                             </select>
                         </div>
-                    </div>
-                    <div class="filter-options">
-                        <div class="category">
-                            País
-                        </div>
-                        <div>
+                        <div class="filter-options">
                             <select name="country" id="">
                                 <option value="" selected="selected">Todos os países</option>
                                 <?php
@@ -130,12 +117,7 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                                     ?>
                             </select>
                         </div>
-                    </div>
-                    <div class="filter-options">
-                        <div class="category">
-                            Editora
-                        </div>
-                        <div>
+                        <div class="filter-options">
                             <select name="publisher" id="">
                                 <option value="" selected="selected">Todas as editoras</option>
                                 <?php
@@ -154,7 +136,7 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                     </div>
                 </form>
             </div>
-            <div id="products">
+            <div class="books">
                 <?php
 
                 $authors    = !empty($_POST['author'])     ? $_POST['author']     : '';
@@ -162,7 +144,7 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                 $categories = !empty($_POST['category'])   ? $_POST['category']   : '';
                 $publishers = !empty($_POST['publisher'])  ? $_POST['publisher']  : '';
 
-                $sql_products = "
+                $sql_books= "
                     SELECT l.codigo, l.titulo, l.paginas, l.ano, l.preco, l.foto1, l.foto2
                     FROM livro l
                     JOIN categoria c ON l.codcategoria = c.codigo
@@ -170,18 +152,18 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                     JOIN editora   e ON l.codeditora      = e.codigo
                     WHERE 1=1
                 ";
-                if ($authors    !== '') $sql_products .= " AND a.codigo = " . intval($authors);
-                if ($countries  !== '') $sql_products .= " AND a.pais   = " . intval($countries);
-                if ($categories !== '') $sql_products .= " AND c.codigo = " . intval($categories);
-                if ($publishers !== '') $sql_products .= " AND e.codigo = " . intval($publishers);
+                if ($authors    !== '') $sql_books .= " AND a.codigo = " . intval($authors);
+                if ($countries  !== '') $sql_books .= " AND a.pais   = " . intval($countries);
+                if ($categories !== '') $sql_books .= " AND c.codigo = " . intval($categories);
+                if ($publishers !== '') $sql_books .= " AND e.codigo = " . intval($publishers);
 
-                $select_products = mysql_query($sql_products);
+                $select_books = mysql_query($sql_books);
 
-                if (mysql_num_rows($select_products) == 0) {
+                if (mysql_num_rows($select_books) == 0) {
                     echo '<h1>Desculpe, mas sua busca não retornou resultados.</h1>';
                 } else {
                     echo "<div class='products-rows'>";
-                    while ($data = mysql_fetch_object($select_products)) {
+                    while ($data = mysql_fetch_object($select_books)) {
                         echo "<div class='items'>";
                         echo "<form method='post' action='home.php'>";
                             echo "<input type='hidden' name='codigo' value='" . htmlspecialchars($data->codigo) . "' />";

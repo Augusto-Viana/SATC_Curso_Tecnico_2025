@@ -234,21 +234,30 @@ left: 10px;
     width: 240px;
 }
 
-#filter {
-    min-height: 454;
-    width: 300px;
+.filter {
     display: flex;
     font-family: "Verdana";
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     font-size: 20px;
     background-color: #000000;
     flex-direction: column;
-    padding: 10px;
     border-right: 2px solid #000000;
     box-shadow: 3px 3px 10px #000000;
 }
 
-#filter select {
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter select {
     font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     border-color: #111111;
     background-color: #111111;
     color: #ff6b00;
@@ -256,35 +265,46 @@ left: 10px;
     font-family: "Verdana";
 }
 
-#filter h1 {
+.filter h1 {
     margin: 0px
 }
 
-#filters select {
-    border-radius: 20px;
-    border-color: white;
+.filter select {
+    border-radius: 15px;
+    border-color: #ff6b00;
     font-size: 22px;
     font-family: "Ahkio-Thin";
+    
+    appearance: none;
+    -moz-appearance: none;
+    background-image: url("../images/frecha.png");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
 }
 
 .filter-options {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-bottom: 20px;
+}
+
+.filter form {
+    margin: 0px;
+    padding: 20px;
 }
 
 .search {
     display: flex;
-    margin-bottom: 20px;
+    margin-top: 20px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .search input {
-    background-color: #ff6b00;
+    background-color: #111111;
     border-color: #ff6b00;
-    color: rgb(0, 0, 0);
+    color: #ff6b00;
     font-family: "Verdana";
     border-radius: 10px;
 }
@@ -300,7 +320,7 @@ left: 10px;
     position: relative;
 }
 
-#products {
+.books {
     background-color: #252525;
     flex: 1;
     height: auto;
