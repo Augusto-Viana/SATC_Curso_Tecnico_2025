@@ -71,7 +71,7 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                 </div>
             </div>
             <div class="login">
-                <h1><a href="../login/login.html">Login</a></h1>
+                <a href="../login/login.html">Login</a>
             </div>
         </div>
         <div id="display">

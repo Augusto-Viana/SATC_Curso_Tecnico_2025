@@ -202,25 +202,26 @@ html {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    background-color: #ff6b00;
-    border-radius: 20px;
-    right: 15px;
-    position: absolute;
-}
 
-.login h1 {
-    margin: 0px;
 }
 
 .login a {
     text-decoration: none;
-    color: white;
-    margin: 10px;
+    color: #ff6b00;
+    padding-inline: 8px;
+    padding-block: 2px;
+    background-color: #111;
+    border: 1px solid #ff6b00;
+    border-radius: 20px;
+    transition: transform 0.3s ease, border 0.3s ease, color 0.3s ease;
+    margin-right: 25px;
+    font-size: 34px;
 }
 
 .login a:hover {
-    transition: 0.3s;
-    color: black;   
+    transform: scale(1.10);
+    color: #ffae00; 
+    border: 1px solid #ffae00;
 }
 
 .image {
@@ -243,7 +244,7 @@ left: 10px;
     font-size: 20px;
     background-color: #000000;
     flex-direction: column;
-    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
     box-shadow: 3px 3px 10px #000000;
 }
 
@@ -274,12 +275,16 @@ left: 10px;
     border-color: #ff6b00;
     font-size: 22px;
     font-family: "Ahkio-Thin";
+    padding-left: 15px;
     
     appearance: none;
     -moz-appearance: none;
-    background-image: url("../images/frecha.png");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
+    -webkit-appearance: none;
+}
+
+.filter select:focus-visible {
+    border: 1px solid #ff6b00;
+    outline: none;
 }
 
 .filter-options {
