@@ -46,35 +46,33 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
     <title> LivrariaDoSeuZé.com.br | Conhecimento e entreterimento de todos os tipos ao seu dispor!</title>
     <link rel="icon" href="../images/Zé Livros.png">
 </head>
-<body id="bodyHome">
+<body class="bodyHome">
     <div class="page">
-        <div id="line">
+        <div class="line">
                 <h5>DESCONTO ZÉPICO!!! Livros SELECIONADOS da categoria mistério em 80% off!</h5>
         </div>
         <div class="header">
-            <div class="box">
-                <div class="image">
-                    <img src="../images/Livraria do Seu Zé.png" alt="Erro ao carregar a imagem =(" class="img">
-                </div>
-                <div class="cart">
+            <div class="cart">
                 <?php
                     if(!empty($_SESSION["shopping_cart"])) {
                         $cart_count = count(array_keys($_SESSION["shopping_cart"]));
                     ?>
                     <div class="cart_div">
-                    <a href="./cart.php"><img src="" height=50 width=50 alt="Erro!"/>Carrinho<span>
+                    <a href="./cart.php"><img src="../images/cartO.png" height=50 width=50 alt="Erro!"/>Carrinho<span>
                     <?php echo $cart_count; ?></span></a>
                     </div>
                     <?php
                     }
                 ?>                
-                </div>
             </div>
+                <div class="image">
+                    <img src="../images/Livraria do Seu Zé.png" alt="Erro ao carregar a imagem =(" class="img">
+                </div>
             <div class="login">
                 <a href="../login/login.html">Login</a>
             </div>
         </div>
-        <div id="display">
+        <div class="display">
             <div class="filter">
                 <form name="form" method="post" action="home.php">
                     <div class="filters">
@@ -135,6 +133,17 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                         <input type="submit" name="search" value="PESQUISAR">                        
                     </div>
                 </form>
+                <div class="banner">
+                    <div class="slide fade">
+                        <img src="../images/banner1.png" alt="Imagem 1">
+                    </div>
+                    <div class="slide fade">
+                        <img src="../images/banner2.png" alt="Imagem 2">
+                    </div>
+                    <div class="slide fade">
+                        <img src="../images/banner3.png" alt="Imagem 3">
+                    </div>
+                </div>
             </div>
             <div class="books">
                 <?php
@@ -189,4 +198,36 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
         </div>
     </div>
 </body>
+
+<script>
+    let selectedSlide = 0;
+    showSlides();
+
+    function showSlides() {
+        const slide = document.getElementsByClassName("slide");
+        for (let i = 0; i < slide.length; i++) {
+            slide[i].style.display = "none";
+        }
+
+        selectedSlide++;
+        if (selectedSlide > slide.length) { 
+            selectedSlide = 1 
+        }
+
+        slide[selectedSlide - 1].style.display = "block";
+        setTimeout(showSlides, 5000); 
+    }
+
+    function changeSlide(n) {
+        selectedSlide += n - 1;
+        const slide = document.getElementsByClassName("slide");
+        if (selectedSlide > slide.length) selectedSlide = 1;
+        if (selectedSlide < 1) selectedSlide = slide.length;
+        for (let i = 0; i < slide.length; i++) {
+            slide[i].style.display = "none";
+        }
+        slide[selectedSlide - 1].style.display = "block";
+    }
+</script>
+
 </html>
