@@ -4,20 +4,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #ff6b00;
 }
 
 /* --------------------------------------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------Cadastros---------------------------------------------------- */
 
+.body {
+    background-color: #111111;
+}
+
 .container {
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
-    background-color: rgb(40, 110, 240);
+    background-color: #000000;
     border-radius: 20px;
-    color: white;
+    border: 1px solid #ff6b00;
+    color: #ff6b00;
     font-family: "Evo";
 }
 
@@ -33,19 +39,39 @@
     align-items: center;
     display: flex;
     border-radius: 7px;
-    background-color: rgb(0, 75, 240);
+    border: 1px solid #ff6b00 ;
+    background-color: #222222;
     padding: 15px;
-    margin-bottom: 30px;
+}
+
+.back {
+    align-items: center;
+    justify-content: center;
+    padding-block: 20px;
+    margin: 0px;
+}
+
+.back a{
+    text-decoration: none;
+    color: #ff6b00;
+    padding-inline: 8px;
+    padding-block: 2px;
+    background-color: #111;
+    border: 1px solid #ff6b00;
+    border-radius: 20px;
+    font-size: 10px;
+}
+
+.back a:hover {
+    color: #ffae00; 
+    border: 1px solid #ffae00;
 }
 
 .input {
     border-radius: 7px;
-    border-color: white;
-}
-
-input {
-    border-radius: 7px;
-    border-color: white;
+    border-color: #ff6b00;
+    background-color: #000000;
+    color: #ff6b00;
 }
 
 .buttons {
@@ -91,9 +117,10 @@ input {
 /* --------------------------------------------------Login-------------------------------------------------------- */
 
 .btl {
-    background-color: rgb(0, 255, 0);
-    border-color: rgb(0, 255, 0);
-    font-family: "Evo";    
+    background-color: #000000;
+    border: 1px solid #ff6b00;
+    color: #ff6b00;
+    font-family: "Evo";
 }
 
 /* --------------------------------------------------------------------------------------------------------------- */
@@ -101,25 +128,31 @@ input {
 /* --------------------------------------------------Menu-------------------------------------------------------- */
 
 .menu {
-    background-color: rgb(0, 75, 240);
+    background-color: #111111;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     border-radius: 7px;
+    border: 1px solid #ff6b00;
     padding: 20px;
-    margin-bottom: 30px;
 }
 
 .menu a {
+    padding: 1px;
     text-decoration: none;
-    color: white;
-    background-color: rgb(0, 119, 255);
+    color: #ff6b00;
+    background-color: #000000;
     border-radius: 5px;
+    border: 1px solid #ff6b00;
+    width: 280px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 .menu a:hover {
-    color: rgb(0, 0, 0);
+    /* color: #000000; */
     transition: 0.3s;
     text-decoration:underline;
 }
@@ -128,7 +161,13 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(0, 0, 0);
+    animation: alert 1s infinite alternate;
+}
+
+@keyframes alert {
+    0%      { color: red; }
+    50%     { color: white; }
+    100%     { color: red; }
 }
 
 /* --------------------------------------------------------------------------------------------------------------- */
@@ -159,7 +198,7 @@ html {
 
 }
 
-  @keyframes changeColor {
+@keyframes changeColor {
     0%   { color: rgb(108, 2, 170); }
     20%  { color: red; }
     40%  { color: orange; }
@@ -192,7 +231,6 @@ html {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-
 }
 
 .login a {
@@ -393,21 +431,21 @@ html {
     margin: 20px;
 }
 
-.products-images {
+.books-images {
     image-rendering: optimizeQuality;
     height: 275px;
     width: 225px;
     margin-top: 20px;
 }
 
-.products-rows {
+.books-rows {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     height: auto;
 }
 
-.product-info {
+.books-info {
     width: 200px;
 }
 

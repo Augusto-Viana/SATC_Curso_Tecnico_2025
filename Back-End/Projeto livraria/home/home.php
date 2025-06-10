@@ -54,16 +54,17 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
         <div class="header">
             <div class="cart">
                 <?php
+                    $cart_count = 0;
                     if(!empty($_SESSION["shopping_cart"])) {
-                        $cart_count = count(array_keys($_SESSION["shopping_cart"]));
-                    ?>
-                    <div class="cart_div">
-                    <a href="./cart.php"><img src="../images/cartO.png" height=50 width=50 alt="Erro!"/>Carrinho<span>
-                    <?php echo $cart_count; ?></span></a>
-                    </div>
-                    <?php
+                        $cart_count = count($_SESSION["shopping_cart"]);
                     }
-                ?>                
+                ?>
+                <div class="cart_div">
+                    <a href="./cart.php">
+                        <img src="../images/cartO.png" height=50 width=50 alt="Erro!"/>Carrinho
+                        <span><?php echo $cart_count; ?></span>
+                    </a>
+                </div>              
             </div>
                 <div class="image">
                     <img src="../images/Livraria do Seu Zé.png" alt="Erro ao carregar a imagem =(" class="img">
@@ -171,15 +172,15 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                 if (mysql_num_rows($select_books) == 0) {
                     echo '<h1>Desculpe, mas sua busca não retornou resultados.</h1>';
                 } else {
-                    echo "<div class='products-rows'>";
+                    echo "<div class='books-rows'>";
                     while ($data = mysql_fetch_object($select_books)) {
                         echo "<div class='items'>";
                         echo "<form method='post' action='home.php'>";
                             echo "<input type='hidden' name='codigo' value='" . htmlspecialchars($data->codigo) . "' />";
                             echo "<div>";
-                            echo "<img src='../images/books_images/" . htmlspecialchars($data->foto1) . "' class='products-images'/>";
+                            echo "<img src='../images/books_images/" . htmlspecialchars($data->foto1) . "' class='books-images'/>";
                             echo "</div>";
-                            echo "<div class='product-info'>";
+                            echo "<div class='books-info'>";
                             echo "<p>Título: " . htmlspecialchars($data->titulo) . "</p>";
                             echo "<p>Páginas: "       . htmlspecialchars($data->paginas)       . "</p>";
                             echo "<p>Ano: "   . htmlspecialchars($data->ano)   . "</p>";
