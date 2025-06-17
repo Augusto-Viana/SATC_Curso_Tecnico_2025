@@ -1,9 +1,9 @@
-public class Reptil extends Animal {
+public class Reptil extends Animal { //Nomes iguais e certinhos...
     public Reptil(String name, int age) {
-        super(name, age);
+        super(name, age); //Faz referência à superclasse.
     }
 
-    @Override
+    @Override //Sobreescreve o método.
     public void makeSound() {
         System.out.println("Sssssss!");
     }
