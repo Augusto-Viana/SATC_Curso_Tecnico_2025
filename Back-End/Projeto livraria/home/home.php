@@ -107,10 +107,10 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                             <select name="country" id="">
                                 <option value="" selected="selected">Todos os países</option>
                                 <?php
-                                    $query = mysql_query("SELECT DISTINCT codigo, pais FROM autor ORDER BY pais");
+                                    $query = mysql_query("SELECT DISTINCT pais FROM autor WHERE pais != '' ORDER BY pais");
                                     while ($countries = mysql_fetch_array($query)) { ?>
                                         <option value="<?php echo $countries['pais']; ?>">
-                                            <?php echo $countries['pais'];?>
+                                            <?php echo htmlspecialchars($countries['pais']);?>
                                         </option>
                                     <?php }
                                     ?>
@@ -154,21 +154,53 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                 $categories = !empty($_POST['category'])   ? $_POST['category']   : '';
                 $publishers = !empty($_POST['publisher'])  ? $_POST['publisher']  : '';
 
+                $filter = array_filter(array(
+                    'author'    => $authors,
+                    'country'   => $countries,
+                    'category'  => $categories,
+                    'publisher' => $publishers
+                ));
+
                 $sql_books= "
-                    SELECT l.codigo, l.titulo, l.paginas, l.ano, l.preco, l.foto1, l.foto2
+                    SELECT l.codigo, l.titulo, l.paginas, l.ano, l.preco, l.foto1, l.foto2, a.nome AS autor, e.nome AS editora, c.nome AS categoria, a.pais AS pais
                     FROM livro l
                     JOIN categoria c ON l.codcategoria = c.codigo
                     JOIN autor     a ON l.codautor     = a.codigo
                     JOIN editora   e ON l.codeditora      = e.codigo
                     WHERE 1=1
                 ";
-                if ($authors    !== '') $sql_books .= " AND a.codigo = " . intval($authors);
-                if ($countries  !== '') $sql_books .= " AND a.pais   = " . intval($countries);
-                if ($categories !== '') $sql_books .= " AND c.codigo = " . intval($categories);
-                if ($publishers !== '') $sql_books .= " AND e.codigo = " . intval($publishers);
 
-                $select_books = mysql_query($sql_books);
+                if ($authors !== '') {
+                    $sql_books .= " AND a.codigo = " . intval($authors);
+                    $filter++;
+                }
 
+                if ($countries !== '') {
+                    $sql_books .= " AND a.pais = '" . mysql_real_escape_string($countries) . "'";
+                    $filter++;
+                }
+
+                if ($categories !== '') {
+                    $sql_books .= " AND c.codigo = " . intval($categories);
+                    $filter++;
+                }
+
+                if ($publishers !== '') {
+                    $sql_books .= " AND e.codigo = " . intval($publishers);
+                    $filter++;
+                }
+
+                if ($filter > 0) {
+                    $select_books = mysql_query($sql_books);
+                } else {
+                    $select_books = mysql_query("
+                        SELECT l.codigo, l.titulo, l.paginas, l.ano, l.preco, l.foto1, l.foto2
+                        FROM livro l
+                        JOIN categoria c ON l.codcategoria = c.codigo
+                        JOIN autor     a ON l.codautor     = a.codigo
+                        JOIN editora   e ON l.codeditora   = e.codigo
+                    ");
+                }
                 if (mysql_num_rows($select_books) == 0) {
                     echo '<h1>Desculpe, mas sua busca não retornou resultados.</h1>';
                 } else {
@@ -182,6 +214,10 @@ if (isset($_POST['codigo']) && $_POST['codigo'] != ""){
                             echo "</div>";
                             echo "<div class='books-info'>";
                             echo "<p>Título: " . htmlspecialchars($data->titulo) . "</p>";
+                            echo "<p>Autor(a): " . htmlspecialchars($data->autor) . "</p>";
+                            echo "<p>País: " . htmlspecialchars($data->pais) . "</p>";
+                            echo "<p>Categoria: " . htmlspecialchars($data->categoria) . "</p>";
+                            echo "<p>Editora: " . htmlspecialchars($data->editora) . "</p>";
                             echo "<p>Páginas: "       . htmlspecialchars($data->paginas)       . "</p>";
                             echo "<p>Ano: "   . htmlspecialchars($data->ano)   . "</p>";
                             echo "<p>Preço R$: "  . number_format($data->preco,2,',','.') . "</p>";

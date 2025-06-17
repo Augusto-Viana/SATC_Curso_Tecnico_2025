@@ -121,6 +121,10 @@ input[type="file"]::file-selector-button:hover {
     font-family: "Evo";
 }
 
+.btl input {
+    cursor: pointer;
+}
+
 /* --------------------------------------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------Menu-------------------------------------------------------- */
@@ -306,6 +310,8 @@ html {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+
+    cursor: pointer;
 }
 
 .filter select:focus-visible {
@@ -328,8 +334,7 @@ html {
     display: flex;
     margin-top: 20px;
     justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    align-items: center
 }
 
 .search input {
@@ -338,6 +343,7 @@ html {
     color: #ff6b00;
     font-family: "Verdana";
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .banner {
@@ -421,12 +427,18 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
     background-color: #000000;
     color: #ff6b00;
     border: 1px solid #ff6b00;
     border-radius: 10px;
     width: 275px;
     margin: 20px;
+    min-height: 580px;
+}
+
+.items p {
+    margin-block: 8px;
 }
 
 .books-images {
@@ -459,6 +471,7 @@ html {
     border-color: #ff6b00;
     color: #ff6b00;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .cart_div {
@@ -495,7 +508,6 @@ html {
 .cart .remove {
 	background: none;
 	border: none;
-	color: #0067ab;
 	cursor: pointer;
 	padding: 0px;
 }
