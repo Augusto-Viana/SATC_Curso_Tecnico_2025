@@ -70,7 +70,7 @@ public class Zoologico {
                         int column = scanner.nextInt(); //Determina a coluna onde ele vai ser posicionado.
                         scanner.nextLine();
 
-                        if (line >= 00 && line < 5 && column >= 0 && column) { //Verifica se o valor de linhas e colunas está certo.
+                        if (line >= 0 && line < 5 && column >= 0 && column < 5) { //Verifica se o valor de linhas e colunas está certo.
                             map[line][column] = animalList .get(index).name; //Atualiza o "tabuleiro" da mtraiz, adicionando o animal nas coordenadas informadas.
                             System.out.println("Animal posicionado no mapa!");
                         } else {

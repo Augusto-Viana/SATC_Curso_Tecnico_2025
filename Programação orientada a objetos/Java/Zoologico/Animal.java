@@ -8,7 +8,7 @@ public class Animal { //Superclasse, tem que ter o nome igual a do arquivo.
     }
 
     public void makeSound() { //Aplica em qualquer animal por padrão.
-        Systeml.out.println("Som genérico de animal");
+        System.out.println("Som genérico de animal");
     }
 
     public void showInfo() { //Aplica em qualquer animal por padrão.
