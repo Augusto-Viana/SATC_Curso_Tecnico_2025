@@ -1,0 +1,37 @@
+const button = document.getElementById("cat-button"); //Acesso ao botão de achar gatito
+const image = document.getElementById("cat-image");//Acesso à imagem do gatito
+
+//Só para evitar múltiplos cliques, não é nada demais
+button.addEventListener("click", () => { 
+    button.disabled = true;
+    button.textContent = "Carregando gatito...";
+});
+
+//Função que faz a requisição para o backend e atualiza a imagem
+document.getElementById("cat-button").addEventListener("click", () => {
+    fetch("search.php")
+        //Verifica se a resposta foi ok (status 200-299)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json();
+        })
+        //Processa os dados recebidos
+        .then(data => {
+            if (data.url) {
+                document.getElementById("cat-image").src = data.url;
+            } else {
+                console.warn("Nenhum gatito encontrado!", data);
+            }
+        })
+        //Tratamento de erros
+        .catch(error => {
+            console.error("Houve um problema com a requisição Fetch:", error);
+        })
+        //Reabilita o botão e muda o texto de volta
+        .finally(() => { 
+            button.disabled = false;
+            button.textContent = "Achar gatito!";
+        });
+});
